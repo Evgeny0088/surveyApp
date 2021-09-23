@@ -1,0 +1,40 @@
+body{
+    color: #2a1b1b;
+}
+
+.form-group {
+    padding: 5px;
+}
+
+.card-columns {
+    column-count: 4;
+    padding: 5px;
+}
+
+.card-title{
+    color: darkslateblue;
+    padding: 3px;
+}
+
+ table , th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th.question{
+    width: 15%;
+}
+
+th.employee-answer, th.answer{
+    width: 35%;
+}
+
+.result-headers{
+    font-weight: bold;
+    color: #2a1b1b;
+}
+
+.result-answers{
+    font-weight: normal;
+}
+

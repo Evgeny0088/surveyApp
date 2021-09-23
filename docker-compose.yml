@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  java_app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: surveyApp
+    ports:
+      - 5000:5000
+    links:
+      - mysqldb
+    restart: always
+  mysqldb:
+    image: mysql/mysql-server:latest
+    container_name: surveyAppDB
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=SurveyApp
+      - MYSQL_USER=evgeny88
+      - MYSQL_PASSWORD=Primera77!
+      - MYSQL_HOST=0.0.0.0
+    restart: always
