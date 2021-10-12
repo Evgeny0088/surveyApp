@@ -24,6 +24,10 @@ public class surveysService {
         return surveyRepo.findAll();
     }
 
+    public boolean CheckIfSurveyIsExistsWithSameName(Survey newSurvey){
+        return surveyRepo.findBySname(newSurvey.getSname()).isPresent();
+    }
+
     public List<Survey> findAuthorPassedSurveys(Long authorId){
         return surveyRepo.findSurveyByAuthor(authorId);
     }

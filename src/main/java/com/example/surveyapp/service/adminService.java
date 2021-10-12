@@ -2,23 +2,28 @@ package com.example.surveyapp.service;
 
 import com.example.surveyapp.Models.Admin;
 import com.example.surveyapp.repositories.AdminRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 @Service
-public class adminService {
+public class adminService implements UserDetailsService {
 
-    @Autowired
-    AdminRepo adminRepo;
+    private final AdminRepo adminRepo;
+    private final PasswordEncoder passwordEncoder;
+    public adminService(AdminRepo adminRepo, PasswordEncoder passwordEncoder){
+        this.adminRepo = adminRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    @Autowired
-    passEncode passEncode;
+    public Admin verifiedAdmin(String username,String password){
+        return adminRepo.findByUsernameAndAndPassword(username,passwordEncoder.encode(password));
+    }
 
-    public Admin getAdmin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        String hashedPassword = passEncode.hashedPassword(password);
-        return adminRepo.findByUsernameAndAndPassword(username, hashedPassword);
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return adminRepo.findByUsername(s);
     }
 }

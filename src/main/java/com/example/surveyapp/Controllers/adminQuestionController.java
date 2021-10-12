@@ -50,6 +50,8 @@ public class adminQuestionController {
                                  BindingResult bindingResult,
                                  Model model,
                                  @RequestParam Map<String,String> form){
+        String s = "";
+        System.out.println(s);
         if (bindingResult.hasErrors()){
             Map<String,String> errors = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errors);

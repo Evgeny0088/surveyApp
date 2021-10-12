@@ -1,7 +1,6 @@
 package com.example.surveyapp.Controllers;
 
 import com.example.surveyapp.Models.Admin;
-import com.example.surveyapp.Models.Question;
 import com.example.surveyapp.Models.Survey;
 import com.example.surveyapp.service.adminService;
 import com.example.surveyapp.service.questionService;
@@ -38,13 +37,6 @@ public class adminController {
         return "adminPage";
     }
 
-//    @GetMapping("login")
-//    public String loginPage(@RequestParam(value = "message",required = false) String message,
-//                            Model model){
-//        model.addAttribute("message",message);
-//        return "login";
-//    }
-
     @GetMapping("login")
     public String getLogin(@Valid Admin admin,
                            BindingResult bindingResult,
@@ -55,7 +47,7 @@ public class adminController {
             model.addAttribute("admin", admin);
             return "login";
         }
-        if (admin.equals(adminService.getAdmin(admin.getUsername(),admin.getPassword()))){
+        if (admin.equals(adminService.verifiedAdmin(admin.getUsername(),admin.getPassword()))){
             return "redirect:/surveyApp/admin";
         }else {
             model.addAttribute("message","bad credentials");
@@ -75,6 +67,10 @@ public class adminController {
             model.mergeAttributes(errors);
             return "createSurvey";
         }else {
+            if (surveyService.CheckIfSurveyIsExistsWithSameName(survey)){
+                model.addAttribute("message","survey with this name already exists!");
+                return "createSurvey";
+            }
             surveyService.saveSurvey(survey);
             return "redirect:/admin";
         }

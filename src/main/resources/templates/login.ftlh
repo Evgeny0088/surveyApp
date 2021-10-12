@@ -7,6 +7,6 @@
             ${message}
         </div>
     </#if>
-    <@lm.login "/surveyApp/admin"/>
+    <@lm.login "/surveyApp/login"/>
 
 </@p.page>
