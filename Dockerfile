@@ -7,4 +7,4 @@ RUN chown -R evgeny88:evgeny88 ./
 COPY ${JAR_FILE} app.jar  
 USER evgeny88
 EXPOSE 5000
-ENTRYPOINT ["java","-jar","app.jar"] 
+ENTRYPOINT ["java","-jar","app.jar"]

@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: surveyApp
+    container_name: surveyapp
     ports:
       - 5000:5000
     links:
@@ -12,7 +12,7 @@ services:
     restart: always
   mysqldb:
     image: mysql/mysql-server:latest
-    container_name: surveyAppDB
+    container_name: surveydb
     ports:
       - 3307:3306
     environment:
