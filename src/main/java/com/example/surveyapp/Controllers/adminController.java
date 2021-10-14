@@ -1,24 +1,23 @@
 package com.example.surveyapp.Controllers;
 
-import com.example.surveyapp.Models.Admin;
 import com.example.surveyapp.Models.Survey;
 import com.example.surveyapp.service.adminService;
 import com.example.surveyapp.service.questionService;
 import com.example.surveyapp.service.surveysService;
 import com.example.surveyapp.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class adminController {
 
     @Autowired
@@ -35,24 +34,6 @@ public class adminController {
         List<Survey> surveys = surveyService.surveys();
         model.addAttribute("surveys",surveys);
         return "adminPage";
-    }
-
-    @GetMapping("login")
-    public String getLogin(@Valid Admin admin,
-                           BindingResult bindingResult,
-                           Model model) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        if (bindingResult.hasErrors()){
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
-            model.mergeAttributes(errors);
-            model.addAttribute("admin", admin);
-            return "login";
-        }
-        if (admin.equals(adminService.verifiedAdmin(admin.getUsername(),admin.getPassword()))){
-            return "redirect:/surveyApp/admin";
-        }else {
-            model.addAttribute("message","bad credentials");
-        }
-        return "login";
     }
 
     @GetMapping("admin/createSurvey")

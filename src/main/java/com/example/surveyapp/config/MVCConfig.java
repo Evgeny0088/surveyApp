@@ -2,10 +2,15 @@ package com.example.surveyapp.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class mvcController implements WebMvcConfigurer {
+public class MVCConfig implements WebMvcConfigurer {
+
+    public void addViewControllers(ViewControllerRegistry viewControllerRegistry){
+        viewControllerRegistry.addViewController("/login").setViewName("login");
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -13,3 +18,4 @@ public class mvcController implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
     }
 }
+
