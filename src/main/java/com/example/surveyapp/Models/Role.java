@@ -1,5 +1,5 @@
 package com.example.surveyapp.Models;
 
 public enum Role {
-    ADMIN;
+    ROLE_ADMIN;
 }

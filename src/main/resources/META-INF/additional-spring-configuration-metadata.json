@@ -9,5 +9,10 @@
       "name": "security.enable.csrf",
       "type": "java.lang.String",
       "description": "Description for security.enable.csrf."
+    },
+    {
+      "name": "security.enable.csrf",
+      "type": "java.lang.String",
+      "description": "Description for security.enable.csrf."
     }
   ] }

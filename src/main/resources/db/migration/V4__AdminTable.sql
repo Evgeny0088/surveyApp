@@ -7,4 +7,4 @@ create table admins (
     primary key (id)
 );
 
-insert into admins(id,username,password, roles) values(1,'admin1',' $2a$12$t2uDrekvkCh2EVgjJBsBju9eKtwRdeU9w/CLUcEIL0wRIawqa6bbq', 'ADMIN');
+insert into admins(id,username,password, roles) values(1,'admin1','$2a$12$4pxuqizNw1qp89z9e7TGU.7nMTo7kqJpZta6cYx/5y.ix/wooRw36', 'ROLE_ADMIN');

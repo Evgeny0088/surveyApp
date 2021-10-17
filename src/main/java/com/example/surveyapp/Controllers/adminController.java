@@ -6,7 +6,6 @@ import com.example.surveyapp.service.questionService;
 import com.example.surveyapp.service.surveysService;
 import com.example.surveyapp.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
 public class adminController {
 
     @Autowired
