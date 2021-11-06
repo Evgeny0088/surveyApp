@@ -26,10 +26,6 @@ public class questionService {
         questionRepo.save(question);
     }
 
-    public void createQuestion(Question question){
-        questionRepo.save(question);
-    }
-
     public void deleteQuestion(Long id){
         questionRepo.deleteById(id);
     }

@@ -16,7 +16,7 @@
                     />
                 </label>
             </div>
-<#--            <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="form-group">
                 <button type="submit" class="btn btn-primary ml-2">Next</button>
             </div>
@@ -41,7 +41,7 @@
             <ul class="list-group mt-2">
                 <#list passed_surveys as survey>
                     <li class="list-group-item">
-                        <a href="results/${survey.id}/${author_id}">check results for ${survey.sname}</a>
+                        <a href="/results/${survey.id}/${author_id}">check results for ${survey.sname}</a>
                     </li>
                 <#else>
                     No results

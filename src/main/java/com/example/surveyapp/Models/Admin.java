@@ -2,30 +2,28 @@ package com.example.surveyapp.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "admins")
-public class Admin implements UserDetails {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "name should not be empty!")
     private String username;
-    @NotBlank(message = "Password should not be empty!")
 
+    @NotBlank(message = "Password should not be empty!")
     @JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)
     @NotBlank(message = "Admin role must be specified!")
     private Role roles;
+
+    private boolean active;
 
     public Long getId() {
         return id;
@@ -47,29 +45,23 @@ public class Admin implements UserDetails {
         this.password = password;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public Role getRoles() {
+        return roles;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+    public void setRoles(Role roles) {
+        this.roles = roles;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public boolean isActive() {
+        return active;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(roles.name()));
+    public void setActive(boolean active) {
+        this.active = active;
     }
-
 }

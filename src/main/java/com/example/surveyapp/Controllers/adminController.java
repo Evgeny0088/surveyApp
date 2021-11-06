@@ -1,11 +1,11 @@
 package com.example.surveyapp.Controllers;
 
 import com.example.surveyapp.Models.Survey;
-import com.example.surveyapp.service.adminService;
 import com.example.surveyapp.service.questionService;
 import com.example.surveyapp.service.surveysService;
 import com.example.surveyapp.utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class adminController {
-
-    @Autowired
-    adminService adminService;
 
     @Autowired
     surveysService surveyService;
@@ -27,19 +26,19 @@ public class adminController {
     @Autowired
     questionService questionService;
 
-    @GetMapping("admin")
+    @GetMapping
     public String adminPage(Model model){
         List<Survey> surveys = surveyService.surveys();
         model.addAttribute("surveys",surveys);
         return "adminPage";
     }
 
-    @GetMapping("admin/createSurvey")
+    @GetMapping("/createSurvey")
     public String createSurvey(){
         return "createSurvey";
     }
 
-    @PostMapping("admin/createSurvey")
+    @PostMapping("/createSurvey")
     public String createSurveyPost(@Valid Survey survey, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             Map<String,String> errors = ControllerUtils.getErrors(bindingResult);
@@ -55,7 +54,7 @@ public class adminController {
         }
     }
 
-    @GetMapping("admin/edit/{survey_id}")
+    @GetMapping("/edit/{survey_id}")
     public String editSurvey(@PathVariable("survey_id") Survey survey,
                              Model model){
         model.addAttribute("surveyName", survey.getSname());
@@ -68,7 +67,7 @@ public class adminController {
         return "editSurvey";
     }
 
-    @PostMapping("admin/edit/{survey_id}")
+    @PostMapping("/edit/{survey_id}")
     public String editSurveyPost(@PathVariable("survey_id") Long id,
                                  @Valid Survey survey,
                                  BindingResult bindingResult,

@@ -20,7 +20,7 @@ public class Survey {
 
     private String description;
 
-    @OneToMany(mappedBy = "survey")
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private Set<Question> questions = new HashSet<>();
 
     public Survey(){}

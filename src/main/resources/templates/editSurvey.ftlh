@@ -8,13 +8,13 @@
         <#list questions as question>
             <li class="list-group-item">
                 <p>${question.text}</p>
-                <a class="btn btn-primary mb-2" href="/surveyApp/admin/edit/${survey_id}/editQuestion?question=${question.id}">Edit question</a>
-                <a class="btn btn-danger mb-2" href="/surveyApp/admin/delete/${question.id}">Delete question</a>
+                <a class="btn btn-primary mb-2" href="/admin/edit/${survey_id}/editQuestion/${question.id}">Edit question</a>
+                <a class="btn btn-danger mb-2" href="/admin/delete/${question.id}">Delete question</a>
             </li>
             <#else>
                 <h5>${message!''}</h5>
         </#list>
     </ul>
     <br/>
-    <a class="btn btn-primary mb-2" href="/surveyApp/admin/edit/${survey_id}/createQuestion">Add question</a>
+    <a class="btn btn-primary mb-2" href="/admin/edit/${survey_id}/createQuestion">Create question</a>
 </@p.page>

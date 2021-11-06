@@ -2,6 +2,7 @@
 <#macro editSurvey  button>
     <div class="form-group col-sm-6">
         <form method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="form-group">
                 <input type="text" class="form-control ${(snameError??)?string('is-invalid','')}"
                        value="${surveyName!''}"

@@ -8,6 +8,7 @@ import com.example.surveyapp.repositories.SurveyRepo;
 import com.example.surveyapp.service.questionService;
 import com.example.surveyapp.service.surveysService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class deleteController {
 
     @Autowired
@@ -31,7 +34,7 @@ public class deleteController {
     @Autowired
     SurveyRepo surveyRepo;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/admin/survey/delete/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/survey/delete/{id}")
     public String deleteSurvey(@PathVariable("id") Long id, Model model) throws NotFoundException{
         Optional<Survey> survey = surveyRepo.findById(id);
         if (survey.isEmpty()) {
@@ -42,7 +45,7 @@ public class deleteController {
         return "delete_survey";
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "admin/question/delete/{id}")
+    @RequestMapping(method = RequestMethod.GET,value = "/question/delete/{id}")
     public String deleteQuestion(@PathVariable("id") Long id, Model model)throws NotFoundException{
         Optional<Question> question = questionRepo.findById(id);
         if (question.isEmpty()) {

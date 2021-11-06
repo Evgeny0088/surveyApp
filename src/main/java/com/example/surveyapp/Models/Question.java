@@ -1,5 +1,6 @@
 package com.example.surveyapp.Models;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -11,8 +12,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     @NotBlank(message = "question text should not be empty")
+    @Column(name = "text", unique = true)
     private String text;
 
     @Enumerated(EnumType.STRING)
@@ -21,6 +22,7 @@ public class Question {
     private String answer_options;
 
     @NotBlank(message = "right answer must be provided")
+    @Column(name = "right_answers")
     private String right_answers;
 
     @ManyToOne(fetch = FetchType.EAGER)

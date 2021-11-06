@@ -3,7 +3,7 @@
         ${item} #${id} is deleted!
     </div>
     <di>
-        <a href="/surveyApp/admin">
+        <a href="/admin">
             <span>Back to admin page</span>
         </a>
     </di>

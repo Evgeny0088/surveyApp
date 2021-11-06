@@ -13,6 +13,7 @@
     <br/>
     <div class="form-group col-sm-6">
         <form method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="form-group">
                 <#if current_question.question_type=='TEXT'>
                     <label class="form-check-label">Answer field</label>
@@ -35,7 +36,6 @@
                         </div>
                     </#list>
                 </#if>
-                <#--            <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary ml-2">Next question</button>

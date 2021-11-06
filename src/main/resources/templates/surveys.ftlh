@@ -12,7 +12,7 @@
     <ul class="list-group">
         <#list questions as question>
             <li class="list-group-item">
-                <a href="/surveyApp/surveys/${author.id}/${question.survey_id}/${question.questionId}">start ${question.surveyname}</a>
+                <a href="/surveys/${author.id}/${question.survey_id}/${question.questionId}">start ${question.surveyname}</a>
                 <small> (all your previous data will be lost!)</small>
             </li>
         </#list>

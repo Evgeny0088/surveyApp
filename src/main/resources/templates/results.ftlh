@@ -28,7 +28,7 @@
     </#if>
     <br/>
     <div>
-        <a href="/surveyApp/surveys/${author.id}">
+        <a href="/surveys/${author.id}">
             <span>Try survey again?</span>
         </a>
     </div>
