@@ -11,7 +11,7 @@ services:
       - MYSQL_USER=evgeny88
       - MYSQL_PASSWORD=Primera77!
     restart: always
-  java_app:
+  app:
     build: 
       context: .
       dockerfile: Dockerfile
