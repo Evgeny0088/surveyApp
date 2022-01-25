@@ -1,6 +1,8 @@
 #surveyApp
-
-    issue with spring boot security
-    issue with new question creation
-    docker build: cannot connect to mysql server, locally works fine
+- small survey with small stupid questions
+- security admin for editing of question => login:admin1 pass:admin1
+how to run application:
+<br>
+- run docker-compose up
+- or locally on 5000 port
   
