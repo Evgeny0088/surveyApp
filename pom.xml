@@ -10,7 +10,6 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>surveyApp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>surveyApp</name>
     <description>surveyApp</description>
     <properties>

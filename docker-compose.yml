@@ -1,15 +1,5 @@
-version: "3.3"
+version: "3"
 services:
-  java_app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    container_name: surveyapp
-    ports:
-      - 5000:5000
-    links:
-      - mysqldb
-    restart: always
   mysqldb:
     image: mysql/mysql-server:latest
     container_name: surveydb
@@ -20,5 +10,19 @@ services:
       - MYSQL_DATABASE=SurveyApp
       - MYSQL_USER=evgeny88
       - MYSQL_PASSWORD=Primera77!
-      - MYSQL_HOST=0.0.0.0
     restart: always
+  java_app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: surveyapp
+    ports:
+      - 5000:5000
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/SurveyApp?serverTimezone=UTC&createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      DB_USER: evgeny88
+      DB_PWD: Primera77!
+      DB_NAME: SurveyApp
+    restart: always
+    depends_on: 
+      - mysqldb
